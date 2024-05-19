@@ -1,0 +1,22 @@
+{
+  "apiVersion": 3,
+  "name": "dmg-test/posts-embed",
+  "title": "DMG Test - Posts Embed",
+  "category": "media",
+  "icon": "embed-post",
+  "editorScript": "file:./index.js",
+  "attributes": {
+    "keyword": {
+      "type": "string",
+      "default": ""
+    },
+    "postResults": {
+      "type": "string",
+      "default": ""
+    },
+    "content": {
+      "type": "string"
+    }
+  },
+  "script": "file:./inc/script.js"
+}
