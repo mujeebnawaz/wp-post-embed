@@ -1,6 +1,6 @@
 ## Overview
 
-A WordPress plugin developed to fulfil functional and non-functional requirements for test assignment requested by DMG. 
+A simple Gutenberg block to search and add post links to the a post.  
 
 1. Implements a Component with following functional requiremnets
     - To allow a user to search for posts.
@@ -9,7 +9,7 @@ A WordPress plugin developed to fulfil functional and non-functional requirement
 
 2. Implements WP CLI sub command with following functional requirements
     - To allow for date-after and date-before arguments to search posts. 
-    - Queries for posts which contains 'dmg-test/posts-embed' gutenberg component.
+    - Queries for posts which contains 'wp-post-link-test/posts-embed' gutenberg component.
     
     (Assumed):
     - To have a paginated system if the resultant posts are more than posts_per_page. 
@@ -23,7 +23,7 @@ A WordPress plugin developed to fulfil functional and non-functional requirement
 
 2. **Search command** ```/classes/class-search-command.php``` contains the implementation for the WP CLI sub-command.
 
-3. **Component** ```/src/dmg-posts``` contains the implementation of the component using React / Gutenberg comopnents. The block is registered using ```block.json```. 
+3. **Component** ```/src/wp-post-link-posts``` contains the implementation of the component using React / Gutenberg comopnents. The block is registered using ```block.json```. 
 
 4. **Tests** ```/tests/``` contains all the tests written to be executed with [JEST](https://jestjs.io/). 
 
@@ -51,11 +51,11 @@ To use any of the features plugins must be installed and activated in WordPress.
 
 ### Component
 
-```dmg-test/posts-embed``` is a gutenberg based component which will allow to search and insert posts links in a WordPress post or page. 
+```wp-post-link-test/posts-embed``` is a gutenberg based component which will allow to search and insert posts links in a WordPress post or page. 
 
 **Step 1.**
 
-In gutenberg editor find the component by searching the keyword "dmg".
+In gutenberg editor find the component by searching the keyword "wp-post-link".
 
 ![gutenberg-component](./screenshots/1.png)
 
@@ -77,7 +77,7 @@ Search and insert the link to the post.
 
 ### WP_CLI Command
 
-```dmg-read-more search``` allows the user to get a list of post from post type 'post'. Accepts two associative arguments as follows:
+```wp-post-link-read-more search``` allows the user to get a list of post from post type 'post'. Accepts two associative arguments as follows:
     
 1. ```--date-before``` - This filters and retrieves all the posts before the given date. 
 2. ```--date-after``` - This filters and retrieves all the posts after the given date. 
@@ -88,19 +88,6 @@ Search and insert the link to the post.
 
 
 #### Example:
-```wp dmg-read-more search --date-after=01/01/2020 --date-before=02/01/2024```
+```wp wp-post-link-read-more search --date-after=01/01/2020 --date-before=02/01/2024```
 
 Aforementioned command will retrieve the posts between 01/01/2020 and 02/01/2024.
-
-
-## Critical Evaluation and Considerations
-- It is recognised that the API does not support pagination and as a result the component will only be limited to display the maximum posts_per_page as defined in the API callback method.
-
-- It is also understood that the testing is limited to API and does not cover the component or WP CLI subcommand. 
-
-- No OpenAPI specification.
-
-- No authentication has been implmented for API.
-
-- Have scope for performance optimisations in API response times. 
-

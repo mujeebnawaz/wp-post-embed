@@ -1,19 +1,19 @@
 <?php
 /*
-Plugin Name: DMG TEST
+Plugin Name: WP_POST_LINK TEST
 Author: Mujeeb Nawaz
-Description: A plugin developed as part of a coding test for DMG. 
+Description: A plugin developed as part of a coding test for WP_POST_LINK. 
 Version: 1.0
 */
 
 // Define the plugin directory path
-define( 'DMG_DIR', plugin_dir_path( __FILE__ ) );
-define( 'DMG_SLUG', 'dmg-test-plugin' );
+define( 'WP_POST_LINK_DIR', plugin_dir_path( __FILE__ ) );
+define( 'WP_POST_LINK_SLUG', 'wp-post-link-test-plugin' );
 
 // Require WP-CLI subcommand class. 
-require_once( DMG_DIR.'/classes/class-search-command.php' );
+require_once( WP_POST_LINK_DIR.'/classes/class-search-command.php' );
 // Requier API class. 
-require_once( DMG_DIR.'/classes/class-api.php' );
+require_once( WP_POST_LINK_DIR.'/classes/class-api.php' );
 $api = new API();
 
 /**
@@ -26,11 +26,11 @@ function register_posts_embed_block() {
         return;
     }
     // Do not register the block if the block has not been built.
-    if( !file_exists( DMG_DIR . '/build/dmg-posts/block.json' ) ){
+    if( !file_exists( WP_POST_LINK_DIR . '/build/wp-post-link-posts/block.json' ) ){
         return;
     }
 	// Register the block!
-    register_block_type( DMG_DIR . '/build/dmg-posts/block.json' ) ;
+    register_block_type( WP_POST_LINK_DIR . '/build/wp-post-link-posts/block.json' ) ;
 
 }
 add_action( 'init', 'register_posts_embed_block' );

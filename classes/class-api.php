@@ -14,17 +14,17 @@ class API{
      * - Registers the 'get' route.
      */
     public function get_route() {
-        register_rest_route( 'dmg-post-embed/v1', '/get', 
+        register_rest_route( 'wp-post-link-post-embed/v1', '/get', 
             array(
                 'methods' => 'GET',
-                'callback' => [ $this, 'dmg_get_posts' ],
+                'callback' => [ $this, 'wp-post-link_get_posts' ],
                 'permission_callback' => '__return_true', 
             ) 
         );
     }
     /**
      * Callback method for 'register_rest_route'
-     * Gets invoked for 'dmg-post-embed/v1/get' rest route. 
+     * Gets invoked for 'wp-post-link-post-embed/v1/get' rest route. 
      * 
      * By default:
      * - 10 posts are shown.
@@ -33,7 +33,7 @@ class API{
      * @param WP_REST_Request object which contains the request parameters. 
      * @return WP_REST_Response respone
      */
-    public function dmg_get_posts( $request ){
+    public function wp-post-link_get_posts( $request ){
         $request_params = $request->get_params();
         // Initialiase keyword to an empty string. 
         $keyword = '';

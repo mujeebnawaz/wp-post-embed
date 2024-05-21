@@ -5,7 +5,7 @@ describe('GET posts given post type', () => {
 
         // Common arrangement for all assertions. 
         let host  = 'http://localhost'; 
-        let route = '/wp-json/dmg-post-embed/v1/get';
+        let route = '/wp-json/wp-post-link-post-embed/v1/get';
 
         it('should return 400 bad request if no parameters are given.',
         async () => {

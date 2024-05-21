@@ -26,7 +26,7 @@ export const Edit =( { attributes, setAttributes } ) => {
      * @param {string} postTitle 
      */
     const insertLink = ( postLink, postTitle ) => {
-        const link = `<div>Read More: <a class="dmg-read-more" href="${postLink}">${postTitle}</a></div>`;
+        const link = `<div>Read More: <a class="wp-post-link-read-more" href="${postLink}">${postTitle}</a></div>`;
         setAttributes( { content: link } );
     }
     /**
@@ -55,7 +55,7 @@ export const Edit =( { attributes, setAttributes } ) => {
      */
     const searchPosts = async ( keywords ) => {
         let host   = 'http://localhost'; 
-        let route  = '/wp-json/dmg-post-embed/v1/get';
+        let route  = '/wp-json/wp-post-link-post-embed/v1/get';
         let params = `?type=post&page=1&keyword=${keywords}`;
         
         // Set the loading post indicator. 
@@ -78,7 +78,7 @@ export const Edit =( { attributes, setAttributes } ) => {
     useEffect( async () => {
         // API configuration for recent posts. 
         let host   = 'http://localhost'; 
-        let route  = '/wp-json/dmg-post-embed/v1/get';
+        let route  = '/wp-json/wp-post-link-post-embed/v1/get';
         let params = `?type=post&page=1`;
         // Get recent posts. 
         let response = await fetch( host + route + params );

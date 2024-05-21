@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
-  "name": "dmg-test/posts-embed",
-  "title": "DMG Test - Posts Embed",
+  "name": "wp-post-link-test/posts-embed",
+  "title": "WP_POST_LINK Test - Posts Embed",
   "category": "media",
   "icon": "embed-post",
   "editorScript": "file:./index.js",

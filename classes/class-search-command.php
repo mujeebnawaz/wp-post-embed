@@ -3,13 +3,13 @@
  * Class responsible for adding a sub-commpand to wp cli.
  * 
  * Adds command:
- * - dmg-read-more search
+ * - wp-post-link-read-more search
  * 
  * Usage:
- * - wp dmg-read-more search --date-after=dd/mm/yyyy --date-before=dd/mm/yyyy
+ * - wp wp-post-link-read-more search --date-after=dd/mm/yyyy --date-before=dd/mm/yyyy
  * 
  * Example:
- * - wp dmg-read-more search --date-after=01/01/2020 --date-before=02/01/2024 
+ * - wp wp-post-link-read-more search --date-after=01/01/2020 --date-before=02/01/2024 
  * 
  * @see https://developer.wordpress.org/cli/commands/
  * @see https://make.wordpress.org/cli/handbook/guides/commands-cookbook/
@@ -36,7 +36,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
                 WP_CLI::error( "Error: maximum posts_per_page is not defined!" );
                 return;
             }
-            $dmg_query = new WP_Query( $query_args );
+            $wp-post-link_query = new WP_Query( $query_args );
             $page = 1;
             /**
              * Cycles through all the posts and breaks if any of the following is true:
@@ -47,16 +47,16 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
              * @see https://www.php.net/manual/en/function.fread.php
              */
             while ( true ) {
-                if ( $dmg_query->have_posts() ) {
-                    while ( $dmg_query->have_posts() ) {
-                        $dmg_query->the_post();
+                if ( $wp-post-link_query->have_posts() ) {
+                    while ( $wp-post-link_query->have_posts() ) {
+                        $wp-post-link_query->the_post();
                         WP_CLI::line( get_the_ID() );   
                     }
                 }
                 else{
                     WP_CLI::error( "Error: No posts found!" );
                 }
-                if ( $dmg_query->post_count < $query_args['posts_per_page'] ) {
+                if ( $wp-post-link_query->post_count < $query_args['posts_per_page'] ) {
                     break;
                 } else {
                     $page++;
@@ -66,7 +66,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
                     }
                 }
                 $query_args['paged'] = $page;
-                $dmg_query = new WP_Query( $query_args );
+                $wp-post-link_query = new WP_Query( $query_args );
             }
             wp_reset_postdata();
         }
@@ -133,7 +133,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
                 'post_type'      => 'post',
                 'post_status'    => 'publish',
                 'posts_per_page' => 15,
-                's'              => 'dmg-test/posts-embed'
+                's'              => 'wp-post-link-test/posts-embed'
             );
             // Parse dates
             $parsed_dates = Search_Command::parseDates($assoc_args);
@@ -147,6 +147,6 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
         }
     }
 
-    // Register the dmg-read-more search command with WP_CLI.
-    WP_CLI::add_command( 'dmg-read-more search', 'Search_Command' );
+    // Register the wp-post-link-read-more search command with WP_CLI.
+    WP_CLI::add_command( 'wp-post-link-read-more search', 'Search_Command' );
 }
