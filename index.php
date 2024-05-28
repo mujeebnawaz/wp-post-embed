@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: WP_POST_LINK TEST
+Plugin Name: Post Links Embed
 Author: Mujeeb Nawaz
-Description: A plugin developed as part of a coding test for WP_POST_LINK. 
+Description: A simple gutenberg block to add read more link to a specific post. 
 Version: 1.0
 */
 
 // Define the plugin directory path
 define( 'WP_POST_LINK_DIR', plugin_dir_path( __FILE__ ) );
-define( 'WP_POST_LINK_SLUG', 'wp-post-link-test-plugin' );
+define( 'WP_POST_LINK_SLUG', 'post-links-embed' );
 
 // Require WP-CLI subcommand class. 
 require_once( WP_POST_LINK_DIR.'/classes/class-search-command.php' );
@@ -26,11 +26,12 @@ function register_posts_embed_block() {
         return;
     }
     // Do not register the block if the block has not been built.
-    if( !file_exists( WP_POST_LINK_DIR . '/build/wp-post-link-posts/block.json' ) ){
+    if( !file_exists( WP_POST_LINK_DIR . '/build/post-links-embed/block.json' ) ){
         return;
     }
 	// Register the block!
-    register_block_type( WP_POST_LINK_DIR . '/build/wp-post-link-posts/block.json' ) ;
+    register_block_type( WP_POST_LINK_DIR . '/build/post-links-embed/block.json' );
+
 
 }
 add_action( 'init', 'register_posts_embed_block' );

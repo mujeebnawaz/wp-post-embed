@@ -17,7 +17,7 @@ class API{
         register_rest_route( 'wp-post-link-post-embed/v1', '/get', 
             array(
                 'methods' => 'GET',
-                'callback' => [ $this, 'wp-post-link_get_posts' ],
+                'callback' => [ $this, 'post_links_get_posts' ],
                 'permission_callback' => '__return_true', 
             ) 
         );
@@ -33,7 +33,7 @@ class API{
      * @param WP_REST_Request object which contains the request parameters. 
      * @return WP_REST_Response respone
      */
-    public function wp-post-link_get_posts( $request ){
+    public function post_links_get_posts( $request ){
         $request_params = $request->get_params();
         // Initialiase keyword to an empty string. 
         $keyword = '';

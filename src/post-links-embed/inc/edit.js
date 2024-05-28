@@ -3,6 +3,7 @@ import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { RichText } from '@wordpress/block-editor';
 import { useEffect } from '@wordpress/element';
+import ReadMoreLink  from './read-more';
 /**
  * Script for handling the editor section. 
  */
@@ -15,20 +16,7 @@ export const Edit =( { attributes, setAttributes } ) => {
      * -- This gets reset everytime the component is mounted. 
      */
     const { postResults, content, keyword  } = attributes;
-    /**
-     * Event handler for the posts links. 
-     * When user searches for the posts, posts are shown posts as links (in InspectorControls),
-     * - when they click on any link that link gets inserted into the post (core/paragraph). 
-     * 
-     * ** Sets attributes of "content" which is used in core/paragraph
-     * 
-     * @param {string} postLink 
-     * @param {string} postTitle 
-     */
-    const insertLink = ( postLink, postTitle ) => {
-        const link = `<div>Read More: <a class="wp-post-link-read-more" href="${postLink}">${postTitle}</a></div>`;
-        setAttributes( { content: link } );
-    }
+
     /**
      * This is the method which renders the post links within the Inspector Controls. 
      * ** Sets Attribute of "postResults"
@@ -38,7 +26,7 @@ export const Edit =( { attributes, setAttributes } ) => {
         const postLinks = json.map((post, index) => (
             <React.Fragment key={index}>
                 <a href={post.permalink} 
-                    onClick={ (e) => { e.preventDefault(); insertLink( post.permalink, post.title ) } }>
+                    onClick={ (e) => { e.preventDefault(); setAttributes( { content: post } ); } } >
                     {post.title}
                 </a>
                 <br />
@@ -93,7 +81,6 @@ export const Edit =( { attributes, setAttributes } ) => {
         // Reset the keywords.
         setAttributes( { keyword: "" } );
     }, []); 
-
     return ( 
     <div { ...blockProps }>
     
@@ -108,12 +95,8 @@ export const Edit =( { attributes, setAttributes } ) => {
                 <div id={"post-results"}>{postResults}</div>
             </PanelBody>
         </InspectorControls>
-        <RichText
-                tagName="p"
-                value={content}
-                placeholder={"Search links to insert to the post..."}
-                onChange={(newContent) => setAttributes({ content: newContent })}
-            />
+        {<ReadMoreLink href={content.permalink}>{content.title}</ReadMoreLink>}
+
     </div>
     );
 }

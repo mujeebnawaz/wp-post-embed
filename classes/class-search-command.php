@@ -36,7 +36,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
                 WP_CLI::error( "Error: maximum posts_per_page is not defined!" );
                 return;
             }
-            $wp-post-link_query = new WP_Query( $query_args );
+            $wp_post_link_query = new WP_Query( $query_args );
             $page = 1;
             /**
              * Cycles through all the posts and breaks if any of the following is true:
@@ -47,16 +47,16 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
              * @see https://www.php.net/manual/en/function.fread.php
              */
             while ( true ) {
-                if ( $wp-post-link_query->have_posts() ) {
-                    while ( $wp-post-link_query->have_posts() ) {
-                        $wp-post-link_query->the_post();
+                if ( $wp_post_link_query->have_posts() ) {
+                    while ( $wp_post_link_query->have_posts() ) {
+                        $wp_post_link_query->the_post();
                         WP_CLI::line( get_the_ID() );   
                     }
                 }
                 else{
                     WP_CLI::error( "Error: No posts found!" );
                 }
-                if ( $wp-post-link_query->post_count < $query_args['posts_per_page'] ) {
+                if ( $wp_post_link_query->post_count < $query_args['posts_per_page'] ) {
                     break;
                 } else {
                     $page++;
@@ -66,7 +66,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
                     }
                 }
                 $query_args['paged'] = $page;
-                $wp-post-link_query = new WP_Query( $query_args );
+                $wp_post_link_query = new WP_Query( $query_args );
             }
             wp_reset_postdata();
         }

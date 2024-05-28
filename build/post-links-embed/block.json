@@ -1,7 +1,7 @@
 {
   "apiVersion": 3,
-  "name": "wp-post-link-test/posts-embed",
-  "title": "WP_POST_LINK Test - Posts Embed",
+  "name": "post-links-embed/read-more",
+  "title": "Post Links Embed",
   "category": "media",
   "icon": "embed-post",
   "editorScript": "file:./index.js",
@@ -15,8 +15,11 @@
       "default": ""
     },
     "content": {
-      "type": "string"
+      "type": "object",
+      "default": {
+        "link": "#",
+        "title": "Search for the post to insert a link"
+      }
     }
-  },
-  "script": "file:./inc/script.js"
+  }
 }
