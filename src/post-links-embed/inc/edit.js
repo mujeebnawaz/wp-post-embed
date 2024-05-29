@@ -2,8 +2,10 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { RichText } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
+import { useEffect, useMemo } from '@wordpress/element';
 import ReadMoreLink  from './read-more';
+
+
 /**
  * Script for handling the editor section. 
  */
@@ -81,6 +83,10 @@ export const Edit =( { attributes, setAttributes } ) => {
         // Reset the keywords.
         setAttributes( { keyword: "" } );
     }, []); 
+    // Stopping the link from rerendering.
+    const readMoreLink = useMemo(() => {
+        return <ReadMoreLink href={content.permalink}>{content.title}</ReadMoreLink>;
+      }, [content]); 
     return ( 
     <div { ...blockProps }>
     
@@ -95,7 +101,7 @@ export const Edit =( { attributes, setAttributes } ) => {
                 <div id={"post-results"}>{postResults}</div>
             </PanelBody>
         </InspectorControls>
-        {<ReadMoreLink href={content.permalink}>{content.title}</ReadMoreLink>}
+        {readMoreLink}
 
     </div>
     );

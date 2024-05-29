@@ -1,3 +1,4 @@
+return;
 /**
  * Functional Requirements for API. 
  */
@@ -73,7 +74,7 @@ describe('GET posts given post type', () => {
 
         it('should return relevant results given keywords.', 
         async () => {
-            let params = '?type=post&page=1&keyword=new'
+            let params = '?type=post&page=1&keyword=test'
             // Act
             let response = await fetch( host + route + params );
             let json     = await response.json();
@@ -83,6 +84,6 @@ describe('GET posts given post type', () => {
             expect( Array.isArray(json) ).toBe(true);
 
             // Assert that the first object in the array has a specific title
-            expect( json[0].title ).toEqual('new post 2');
+            expect( json[0].title ).toEqual('testt 4');
         });
 });

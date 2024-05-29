@@ -30,6 +30,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /**
  * Script for handling the editor section. 
  */
@@ -126,6 +127,12 @@ const Edit = ({
       keyword: ""
     });
   }, []);
+  // Stopping the link from rerendering.
+  const readMoreLink = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useMemo)(() => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_read_more__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      href: content.permalink
+    }, content.title);
+  }, [content]);
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
@@ -136,9 +143,7 @@ const Edit = ({
     value: keyword
   }), keyword ? '' : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, "Recent posts")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     id: "post-results"
-  }, postResults))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_read_more__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    href: content.permalink
-  }, content.title));
+  }, postResults))), readMoreLink);
 };
 
 /***/ }),
