@@ -4,6 +4,7 @@ Plugin Name: Post Links Embed
 Author: Mujeeb Nawaz
 Description: A simple gutenberg block to add read more link to a specific post. 
 Version: 1.0
+--
 */
 
 // Define the plugin directory path
